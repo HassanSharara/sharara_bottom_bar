@@ -124,72 +124,74 @@ class __ShararaBottomBarState extends State<_ShararaBottomBar> with SingleTicker
                   Row(
                     children: [
                       for(int i = 0; i<widget.controller.items.length;i++)
-                        Builder(
-                            builder: (context) {
-                              final bool selected = index  == i;
-                              final ShararaBottomItem item = widget.controller.items[i];
-                              final child = !selected && widget.controller.nonActiveColor==null?
-                              item.child:
-                              ColorFiltered(colorFilter:ColorFilter.mode(
-                                  selected?widget.controller.activeColor:
-                                  widget.controller.nonActiveColor!
-                                  , BlendMode.srcIn),
-                                child:item.child,
-                              );
-                              return GestureDetector(
-                                onTap:(){
-                                  widget.controller.changePageTo(i);
-                                  if(widget.controller.onPageChangedByTap!=null){
-                                    widget.controller.onPageChangedByTap!(i);
-                                  }
-                                },
-                                child: Container(
-                                  decoration:const BoxDecoration(),
-                                  height:widget.controller.height,
-                                  width:eachWidgetSize,
-                                  margin:const EdgeInsets.only(
-                                      bottom:3
-                                  ),
-                                  child:Column(
-                                    children: [
-                                      Expanded(
-                                        child: AnimatedContainer(
-                                            margin:const EdgeInsets.all(2),
-                                            decoration:BoxDecoration(
-                                                shape:BoxShape.circle,
-                                                color:selected?
-                                                widget.controller.circleNotchBackgroundColor
-                                                    :
-                                                null
-                                            ),
-                                            padding:EdgeInsets
-                                                .all(
-                                                selected?
-                                                6:
-                                                20
-                                            ),
-                                            duration:widget.controller.duration,
-                                            child:selected ?
-                                            FittedBox(
-                                              child:child,
-                                            ):child),
-                                      ),
-                                      const SizedBox(height:3,),
-                                      AnimatedContainer(
-                                        duration:widget.controller.duration,
-                                        height: selected ?20 : 15,
-                                        width:eachWidgetSize,
-                                        child:FittedBox(
-                                            fit:BoxFit.contain,
-                                            child: Text(item.label??"",
-                                            )
+                        Expanded(
+                          child: Builder(
+                              builder: (context) {
+                                final bool selected = index  == i;
+                                final ShararaBottomItem item = widget.controller.items[i];
+                                final child = !selected && widget.controller.nonActiveColor==null?
+                                item.child:
+                                ColorFiltered(colorFilter:ColorFilter.mode(
+                                    selected?widget.controller.activeColor:
+                                    widget.controller.nonActiveColor!
+                                    , BlendMode.srcIn),
+                                  child:item.child,
+                                );
+                                return GestureDetector(
+                                  onTap:(){
+                                    widget.controller.changePageTo(i);
+                                    if(widget.controller.onPageChangedByTap!=null){
+                                      widget.controller.onPageChangedByTap!(i);
+                                    }
+                                  },
+                                  child: Container(
+                                    decoration:const BoxDecoration(),
+                                    height:widget.controller.height,
+                                    width:eachWidgetSize,
+                                    margin:const EdgeInsets.only(
+                                        bottom:3
+                                    ),
+                                    child:Column(
+                                      children: [
+                                        Expanded(
+                                          child: AnimatedContainer(
+                                              margin:const EdgeInsets.all(2),
+                                              decoration:BoxDecoration(
+                                                  shape:BoxShape.circle,
+                                                  color:selected?
+                                                  widget.controller.circleNotchBackgroundColor
+                                                      :
+                                                  null
+                                              ),
+                                              padding:EdgeInsets
+                                                  .all(
+                                                  selected?
+                                                  6:
+                                                  20
+                                              ),
+                                              duration:widget.controller.duration,
+                                              child:selected ?
+                                              FittedBox(
+                                                child:child,
+                                              ):child),
                                         ),
-                                      )
-                                    ],
+                                        const SizedBox(height:3,),
+                                        AnimatedContainer(
+                                          duration:widget.controller.duration,
+                                          height: selected ?20 : 15,
+                                          width:eachWidgetSize,
+                                          child:FittedBox(
+                                              fit:BoxFit.contain,
+                                              child: Text(item.label??"",
+                                              )
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
+                                );
+                              }
+                          ),
                         ),
 
                     ],
