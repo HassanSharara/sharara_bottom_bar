@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sharara_bottom_bar/src/Controller/controller.dart';
 
 class ShararaBottomBar extends StatelessWidget {
@@ -183,6 +182,7 @@ class __ShararaBottomBarState extends State<_ShararaBottomBar> with SingleTicker
                                           child:FittedBox(
                                               fit:BoxFit.contain,
                                               child: Text(item.label??"",
+                                                style: widget.controller.labelTextStyle,
                                               )
                                           ),
                                         )
@@ -250,7 +250,8 @@ final class CurvePainter extends  CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Path path = Path();
     final Paint shadowPaint = Paint()
-    ..color = controller.shadowColor ?? Colors.blueGrey.withOpacity(0.3)
+    ..color = controller.shadowColor ?? Colors.blueGrey.
+    withValues(alpha:0.3)
     ..maskFilter = const MaskFilter.blur(BlurStyle.outer,2);
     final Paint backgroundPaint = Paint();
     if(controller.backgroundColor!=null){

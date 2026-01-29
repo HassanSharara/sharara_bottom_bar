@@ -16,6 +16,7 @@ class ShararaBottomBarController {
     this.bottomBarSize ,
     this.curves = Curves.linearToEaseOut ,
     final int initialIndex = 0,
+    this.labelTextStyle,
     this.curveRadiusSize = 35 ,
     this.margin = const EdgeInsets.all(0)}
     ):
@@ -31,6 +32,7 @@ class ShararaBottomBarController {
   final EdgeInsets margin;
   final Duration duration;
   Size? bottomBarSize;
+  final TextStyle? labelTextStyle;
   int get index => indexNotifier.value ;
 
   late final ValueNotifier<int> indexNotifier;
